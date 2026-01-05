@@ -1,0 +1,30 @@
+package com.example.task_app.domain.dto;
+
+import com.example.task_app.domain.entity.TaskPriority;
+import jakarta.annotation.Nullable;
+import jakarta.validation.constraints.FutureOrPresent;
+import jakarta.validation.constraints.NotBlank;
+import org.hibernate.validator.constraints.Length;
+
+import java.time.LocalDate;
+
+public record CreateTaskRequestDto(
+        @NotBlank(message=ERROR_MESSAGE_TITLE_LENGTH)
+        @Length(max=255,message=ERROR_MESSAGE_TITLE_LENGTH)
+        String title,
+
+        @Length(max=1000,message = ERROR_MESSAGE_DESCRIPTION_LENGTH)
+        String description,
+
+        @FutureOrPresent(message = ERROR_MESSAGE_DUEDATE_FUTURE)
+        @Nullable
+        LocalDate dueDate,
+
+
+        TaskPriority priority
+) {
+    private static final String ERROR_MESSAGE_TITLE_LENGTH="Title must be between 1 and 255 characters";
+    private static final String ERROR_MESSAGE_DESCRIPTION_LENGTH="Description must be less than 1000 characters";
+    private static final String ERROR_MESSAGE_DUEDATE_FUTURE="DueDate should be in future";
+
+}

@@ -1,6 +1,7 @@
 package com.example.task_app.domain.entity;
 
 import java.time.Instant;
+import java.util.Objects;
 import java.util.UUID;
 import java.time.LocalDate;
 
@@ -110,11 +111,10 @@ public class Task {
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if(obj==null || getClass()!= obj.getClass()){
-            return false;
-        }
-        
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Task task = (Task) o;
+        return Objects.equals(id, task.id);
     }
 
     @Override
@@ -122,11 +122,6 @@ public class Task {
         return Objects.hashCode(id);
     }
 
-    
-
-
-
-    
     public Task() {
      
     }
