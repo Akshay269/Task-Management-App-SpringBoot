@@ -1,0 +1,6 @@
+name: task-build-app
+services:
+
+
+    ui:
+       image:
